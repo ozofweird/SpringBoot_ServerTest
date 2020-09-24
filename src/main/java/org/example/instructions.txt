@@ -1,0 +1,60 @@
+# main 패키지
+org.example
+org.example.web : Controller 패키지
+org.example.web.dto : Dto 패키지 (데이터 전달을 위한 패키지)
+org.example.domain : Dao 패키지
+org.example.domain.posts : 게시판 Entity 패키지
+org.example.domain.user : 사용자 Entity 패키지
+org.example.service : Service 패키지 (@Transactional)
+org.example.config.auth : 모든 시큐리티 관련 클래스를 담은 클래스
+
+# main 클래스
+org.exmaple/Application.java : main 클래스
+
+org.example.web/HelloController.java
+org.example.web.dto/HelloResponseDto.java
+
+org.example.domain.posts/Posts.java : 게시판 Entity 클래스
+org.example.domain.posts/PostsRepository.java : 게시판 JPA Repository 인터페이스
+org.example.web/PostsApiController.java : 게시판 Api용 Controller 클래스
+org.example.service.posts/PostsService.java : 개시판 Service 클래스
+org.example.web.dto/PostsSaveRequestDto.java : 게시판 저장 Dto 클래스
+org.example.web.dto/PostsResponseDto.java : 게시판 데이터 전달 Dto 클래스
+org.example.web.dto/PostsUpdateRequestDto.java : 게시판 수정 Dto 클래스
+
+org.example.domain/BaseTimeEntity.java : 생성 날짜, 수정 날짜 Entity 클래스
+
+org.example.web/IndexController.java : 게시판 웹용 Controller 클래스
+org.example.web.dto/PostsListResponseDto.java : 게시판 정렬 조회 Dto 클래스
+
+org.example.domain.user/User.java : 사용자 Entity 클래스
+org.example.domain.user/Role.java : Enum 사용자 Role 클래스
+org.example.domain.user/UserRepository.java : 사용자 JPA Repository 인터페이스
+
+org.example.config.auth/SecurityConfig.java : OAuth2 시큐리티 클래스
+org.example.config.auth/CustomOAuth2UserService.java : 로그인 이후 가져온 사용자의 정보를 기반으로 가입 및 정보 수정, 세션 저장 클래스
+org.example.config.auth.dto/OAuthAttributes.java : OAuth2 속성값을 지닌 클래스 (구글, 네이버)
+org.example.config.auth.dto/SessionUser.java : 사용자 세션을 위한 직렬화 기능의 클래스
+org.example.config.auth/LoginUser.java : 세션 중복 방지를 위한 어노테이션 클래스
+org.example.config.auth/LoginUserArgumentResolver.java : HandlerMethodArgumentResolver의 구현체 클래스
+org.example.config/WebConfig.java : LoginUserArgumentResolver가 스프링에서 인식되도록 WebMvcConfig 인터페이스 구현체 클래스
+
+org.example.config/JpaConfig : JPA Auditing을 위한 클래스
+
+-----------------------------------------------------------------------
+
+# test 클래스
+org.example.web/HelloControllerTest.java
+org.example.web.dto/HelloResponseDtoTest.java : Dto Lombok Getter 테스트
+
+org.example.domain.posts/PostsRepositoryTest.java : 게시판 저장 및 조회 JPA Repository 인터페이스 테스트
+org.example.web/PostsApiControllerTest.java : 게시판 Api용 Controller 클래스 테스트
+
+org.example.web/IndexControllerTest.java : 게시판 웹용 Controller 클래스 테스트
+
+-----------------------------------------------------------------------
+
+# properties
+resources/application.properties : MySQL 형태로 쿼리 로그 확인 (test/resources/application.properties는 테스트용)
+resources/application-oauth.properties : OAuth2 정보
+resources/application-real.properties : RDS 정보 (application-oauth.properties와 application-real-db.properties를 포함, profile=real)

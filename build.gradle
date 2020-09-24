@@ -1,0 +1,65 @@
+buildscript {
+    // 전역 변수 설정
+    ext {
+        springBootVersion = '2.1.7.RELEASE'
+    }
+    repositories {
+        mavenCentral()
+        jcenter()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+    }
+}
+
+// 플러그인 의존성
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management'
+
+group 'com.springbook.biz'
+version '1.0.0-SNAPSHOT-'+new Date().format("yyyyMMddHHmmss")
+
+// 의존성 원격 저장소 위치
+// - jcenter()는 mavenCentral()의 라이브러리 업로드의 번거로움을 간단하게 처리한다.
+repositories {
+    mavenCentral()
+    jcenter()
+}
+
+// 프로젝트 의존성 선언
+dependencies {
+    // Lombok
+    // - Preference의 Annotation Processors에서 'Enable annotation processing' 항목 활성화 필요
+    compile('org.projectlombok:lombok')
+
+    // Spring Data JPA
+    compile('org.springframework.boot:spring-boot-starter-data-jpa')
+    // H2 Database
+    compile('com.h2database:h2')
+
+    // mustache
+    // - 'resources/templates' 파일 위치에서 스프링 부트가 자동으로 로딩해준다.
+    // - Controller에서 반환하는 문자열의 prefix, suffix를 자동으로 View Resolver가 처리해준다.
+    compile('org.springframework.boot:spring-boot-starter-mustache')
+
+    // oauth2-client
+    compile('org.springframework.boot:spring-boot-starter-oauth2-client')
+
+    // session-jdbc
+    // - 세션 저장소, 세션 동기화의 역할을 한다.
+    compile('org.springframework.session:spring-session-jdbc')
+
+    // mariaDB
+    // - shcema-mysql.sql의 내용과, 테스트 코드를 수행하면서 h2에서 자동 생성해주는 쿼리 로그의 정보를 RDS 데이터베이스에 적용해준다.
+    compile('org.mariadb.jdbc:mariadb-java-client')
+
+    // spring-security-test
+    // - 임의로 인증된 사용자를 추가해준다.
+    testCompile('org.springframework.security:spring-security-test')
+
+    // 기본
+    compile('org.springframework.boot:spring-boot-starter-web')
+    testCompile('org.springframework.boot:spring-boot-starter-test')
+}
