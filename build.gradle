@@ -19,7 +19,7 @@ apply plugin: 'org.springframework.boot'
 apply plugin: 'io.spring.dependency-management'
 
 group 'com.springbook.biz'
-version '1.0.0-SNAPSHOT-'+new Date().format("yyyyMMddHHmmss")
+version '1.0.1-SNAPSHOT-'+new Date().format("yyyyMMddHHmmss")
 
 // 의존성 원격 저장소 위치
 // - jcenter()는 mavenCentral()의 라이브러리 업로드의 번거로움을 간단하게 처리한다.
