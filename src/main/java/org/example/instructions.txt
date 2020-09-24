@@ -41,6 +41,8 @@ org.example.config/WebConfig.java : LoginUserArgumentResolver가 스프링에서
 
 org.example.config/JpaConfig : JPA Auditing을 위한 클래스
 
+org.example.web/ProfileController : 8081, 8082 포트를 사용하는지 판단하는 Controller 클래스
+
 -----------------------------------------------------------------------
 
 # test 클래스
@@ -52,9 +54,16 @@ org.example.web/PostsApiControllerTest.java : 게시판 Api용 Controller 클래
 
 org.example.web/IndexControllerTest.java : 게시판 웹용 Controller 클래스 테스트
 
+org.example.web/ProfileControllerUnitTest : Profile 조회 Controller 클래스 테스트
+org.example.web/ProfileControllerTest : Profile Controller 클래스 테스트
+
 -----------------------------------------------------------------------
 
 # properties
 resources/application.properties : MySQL 형태로 쿼리 로그 확인 (test/resources/application.properties는 테스트용)
 resources/application-oauth.properties : OAuth2 정보
 resources/application-real.properties : RDS 정보 (application-oauth.properties와 application-real-db.properties를 포함, profile=real)
+
+-----------------------------------------------------------------------
+.travis.yml : Travis CI 설정 파일
+appspec.yml : CodeDeploy 설정 파일
